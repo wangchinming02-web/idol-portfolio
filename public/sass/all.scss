@@ -1,0 +1,518 @@
+/* project01.css - 完整版，保持圖片原始比例 */
+
+/* 1. 字型與全局設定 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+@font-face {
+  font-family: '源泉圓體 TW';
+  src: url('/project01/fonts/900.otf') format("opentype");
+
+  /* 或你的實際檔名 */
+  font-weight: 900;
+
+  /* 這才是 Heavy 的正確值 */
+  font-style: normal;
+  font-display: swap;
+
+  /* 避免閃爍 */
+}
+
+:root {
+  --primary:#0d6efd;
+  --primary-dark:#0b5ed7;
+  --gray-light:#f8f9fa;
+  --gray:#6c757d;
+  --dark:#212529;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 2. 工具列與 Banner */
+
+#toolbar {
+  background: #212529 !important;
+  font-size: 0.9rem;
+}
+
+.banner-container img#forumlogo {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 3. 搜尋區 (Hero) */
+
+#search_bar_container {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+#searchBgCarousel .carousel-item {
+  height: 100%;
+
+  > div {
+    height: 100%;
+    background-size: contain;
+
+    /* 保持原始比例，不裁切 */
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+#search_bar_container .position-relative {
+  z-index: 2;
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  color: white;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.28);
+    transform: translateY(-2px);
+  }
+}
+.featured-group-card {
+  .card {
+    height: 600px !important;
+    max-height: 600px !important;
+    overflow: hidden !important;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .card img {
+    width: 100%;
+    height: 600px !important;
+    object-fit: cover !important;
+    object-position: center;
+    flex: 0 0 auto !important;
+  }
+
+  .card-body {
+    padding: 1.5rem !important;
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  .member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    flex: 1 !important;
+    max-height: 240px !important;
+    overflow-y: auto !important;
+    padding-right: 0.4rem;
+  }
+
+  .member-item {
+    min-height: 68px !important;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: rgba(248, 249, 250, 0.7);
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #e9ecef;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .flex-shrink-0 {
+      width: 48px !important;
+      height: 48px !important;
+      min-width: 48px !important;
+      min-height: 48px !important;
+      overflow: hidden;
+      border-radius: 50%;
+
+      img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+    }
+  }
+
+  .card-body .btn {
+    margin-top: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .featured-group-card {
+    .card {
+      height: auto !important;
+      max-height: none !important;
+    }
+    .card img {
+      height: 320px !important;
+    }
+    .member-grid {
+      max-height: 300px !important;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+  }
+}
+/* 4. 熱門團體 / 熱門 solo Carousel */
+
+/* 強制加大熱門輪播圖片高度 - 蓋掉所有問題 */
+
+#hotIdolCarousel {
+  /* 整體 carousel 容器拉高 */
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item > .row {
+    height: auto !important;
+  }
+
+  .card {
+    height: 850px !important;           /* 整體卡片高度再拉長 */
+    max-height: 850px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .card-img-top {
+    height: 700px !important;           /* 圖片高度極限拉長，佔卡片 88% 以上 */
+    max-height: 700px !important;
+    min-height: 700px !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    flex: 0 0 auto !important;          /* 強制不被壓縮 */
+  }
+
+  .card-body {
+    height: auto !important;
+    padding: 1rem !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+/* 手機版再拉長一點 */
+@media (max-width: 575px) {
+  #hotIdolCarousel {
+    .card {
+      height: 950px !important;
+    }
+
+    .card-img-top {
+      height: 830px !important;
+    }
+  }
+}
+/* 5. 近期出道 Carousel */
+
+/* 最終強制鎖定近期出道容器高度 - 解決空白撐高問題 */
+#debutCarousel {
+  /* 整體 carousel 高度鎖死，這是最關鍵的一行 */
+  height: 400px !important;               /* ← 從這裡開始調整：200px ~ 260px 試 */
+  max-height: 400px !important;
+  overflow: hidden !important;            /* 防止內容溢出撐開 */
+
+  /* 內層全部跟隨固定高度 */
+  .carousel-inner,
+  .carousel-item {
+    height: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* 移除 row 的 stretch 行為，避免互相拉高 */
+  .row {
+    height: 100% !important;
+    align-items: start !important;        /* 改成 start，不再 stretch */
+    margin: 0 !important;
+  }
+
+  .col-6 {
+    height: auto !important;              /* 讓 col 自己決定高度，不強制等高 */
+    max-height: 100% !important;
+    padding: 0 8px !important;            /* 稍微縮小間距 */
+  }
+
+  /* 卡片高度跟隨容器，但不再無限撐 */
+  .card {
+    height: 100% !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* 圖片區域固定高度（你說圖片已經正常，這裡維持） */
+  .card > .row > div:first-child {        /* 左邊圖片 col */
+    height: 130px !important;             /* 跟你的圖片高度一致 */
+    max-height: 130px !important;
+    overflow: hidden !important;
+  }
+
+  img {
+    height: 130px !important;
+    max-height: 130px !important;
+    object-fit: contain !important;
+  }
+
+  /* 文字區自動填滿剩餘空間，但不撐高 */
+  .card-body {
+    flex: 1 !important;
+    padding: 0.6rem 0.8rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;   /* 文字垂直置中 */
+    text-align: center !important;
+  }
+
+  /* 壓縮文字與按鈕，減少垂直空間 */
+  .card-title {
+    font-size: 1rem !important;
+    margin: 0.3rem 0 !important;
+  }
+
+  .card-text {
+    font-size: 0.78rem !important;
+    margin: 0.2rem 0 !important;
+  }
+
+  .btn {
+    font-size: 0.78rem !important;
+    padding: 0.3rem 0.75rem !important;
+    margin-top: 0.4rem !important;
+  }
+}
+
+/* 手機版稍微放寬，避免太擠 */
+@media (max-width: 576px) {
+  #debutCarousel {
+    height: 260px !important;
+    max-height: 260px !important;
+
+    .card > .row > div:first-child {
+      height: 140px !important;
+    }
+    img {
+      height: 140px !important;
+    }
+  }
+}
+
+/* 6. 最新上架 / 公司 / 場地 */
+
+/* 通用圖片樣式（公司 + 場地用） */
+.camponylogo img,
+.locationIMG img {
+  width: 80%;
+  max-width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: contain;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin: 15px auto;
+  display: block;
+}
+
+/* 只針對「最新上架」專輯 carousel 獨立設定 */
+#companyCarousel .carousel-inner.album .white-album {
+  padding: 1rem 0;                    /* 整體上下留白 */
+  text-align: center;
+}
+
+#companyCarousel .carousel-inner.album .white-album img {
+  width: 65% !important;              /* 圖片主體縮小，可調 55% ~ 75% */
+  height: auto !important;            /* 關鍵：自動高度，保持比例 */
+  max-width: 420px !important;        /* 上限，避免大螢幕過大 */
+  max-height: 420px !important;       /* 正方形圖片上限相同 */
+  object-fit: contain !important;
+  display: block !important;
+  margin: 20px auto 40px auto !important;  /* 底部留 40px 以上，避免壓到文字 */
+}
+
+/* 文字區塊保護：確保不會被圖片蓋住 */
+#companyCarousel .carousel-inner.album .white-album .p-3 {
+  padding: 1.25rem !important;
+  margin-top: 0.5rem;
+  background: rgba(255, 255, 255, 0.92); /* 可選：加淺底色更清晰 */
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+/* 手機版調整（圖片稍大一點，間距再多留） */
+@media (max-width: 767px) {
+  #companyCarousel .carousel-inner.album .white-album img {
+    width: 80% !important;
+    max-width: 360px !important;
+    margin-bottom: 50px !important;   /* 手機多留底部空間 */
+  }
+
+  #companyCarousel .carousel-inner.album .white-album .p-3 {
+    padding: 1rem !important;
+  }
+}
+/* 7. Footer 與最後資訊區 */
+
+#last-data {
+  background: #343a40;
+  color: #adb5bd;
+  padding: 1.25rem 0;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+#contentR {
+  background-image: url('./img/481120421_958930439747343_8878834431833123349_n.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+/* 8. 其他通用調整 */
+
+.card-title {
+  font-weight: 700;
+}
+
+.card-text.small {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* 手機端文字與按鈕調整 */
+@media (max-width: 575px) {
+  h6.fw-bold {
+    font-size: 1.15rem;
+  }
+
+  .card-text.small {
+    font-size: 0.82rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .input-group {
+    flex-wrap: wrap;
+  }
+}
+
+
+
+#contentR {
+    font-family: '源泉圓體 TW', "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    font-weight: 900;          /* 強制用 Heavy 版，會超粗圓潤 */
+    color: #8BA758;            /* 可加顏色更有感 */
+    text-shadow:
+        -0.25px -0.25px 0 #ffffff,
+         0.25px -0.25px 0 #ffffff,
+        -0.25px  0.25px 0 #ffffff,
+         0.25px  0.25px 0 #ffffff;
+    /* 如果支援 text-stroke，就覆蓋成更漂亮的版本 */
+    @supports (-webkit-text-stroke: 1px #000) {
+        text-shadow: none;
+        -webkit-text-stroke: 1px #000000;
+        /* color 維持綠色 */
+    }
+}
+#contentR p,ul{
+    font-size: 1em;
+}
+
+#contentL {
+    font-family: '源泉圓體 TW', "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    font-weight: 900;          /* 強制用 Heavy 版，會超粗圓潤 */
+    color: #8BA758;            /* 可加顏色更有感 */
+    
+}
+
+
+/* 多層下拉選單支援 (SCSS Version) */
+.dropdown-submenu {
+  position: relative;
+
+  // 第二層選單的基本樣式
+  .dropdown-menu {
+    top: 0;
+    left: 100%;       // 預設往右展開
+    margin-top: -1px; 
+    margin-left: 0;
+    border-radius: 0.25rem; // 整合原有的設定
+  }
+
+  // 桌面版 Hover 顯示第二層
+  @media (min-width: 992px) {
+    &:hover {
+      > .dropdown-menu {
+        display: block;
+        // 建議加上顯隱動畫增加質感
+        animation: fadeIn 0.2s ease-in;
+      }
+    }
+  }
+
+  // 手機版相容性處理 (防止選單在小螢幕往右彈出造成破版)
+  @media (max-width: 991.98px) {
+    .dropdown-menu {
+      position: static; // 改為向下展開
+      left: 0;
+      margin-left: 1rem; // 縮排顯示層次感
+      border: none;
+      background-color: rgba(0, 0, 0, 0.03); // 加個淡淡底色區分
+    }
+  }
+}
+
+// 簡單的淡入動畫
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100%;                /* 確保背景填滿 */
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%) !important;
+}

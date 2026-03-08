@@ -1,0 +1,75 @@
+# 系統與編輯器產生的檔案（Windows / macOS / VS Code / Notepad++ 等）
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+.vscode/
+.idea/
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# PHP 常見暫存與快取
+vendor/
+composer.lock          # 如果你是用 Composer 管理套件，lock 檔可選（團隊合作建議 commit）
+.php_cs.cache
+.php_cs
+.phpstan-cache/
+.phpmd.cache
+phpunit.xml.cache
+
+# 開發/測試環境特定檔案（絕對不要上傳到生產）
+.env
+.env.example           # 如果有範例可 commit，但真實 .env 絕對忽略
+.env.local
+.env.*.php
+config/local.php
+includes/db_config.php # 如果 db_config.php 裡有真實密碼，強烈建議忽略！改用 .env 載入
+includes/config.php    # 同上，如果有密碼或敏感資訊
+
+# 資料庫匯出檔（本地備份用）
+*.sql
+*.sql.gz
+idol_portal.sql        # 你的資料庫匯出檔
+*.dump
+*.backup.sql
+
+# 上傳資料夾（使用者上傳內容，生產環境會變動）
+uploads/
+public/uploads/        # 如果 public 裡有 uploads 子資料夾也忽略
+
+# 編譯/壓縮產生的檔案（SASS/SCSS）
+public/sass/*.css.map
+public/css/*.map
+*.css.map
+*.sass.map
+
+# 字型或靜態資源的本地快取（如果有）
+fonts/*.woff2.cache
+fonts/*.ttf.cache
+
+# PHPMailer 或第三方 src（如果是用手動下載，不是 Composer）
+src/                   # 如果 src/ 是你手動放的 PHPMailer，建議忽略（下次專案再下載）
+vendor/                # 如果未來用 Composer，就忽略
+
+# 其他專案特定垃圾
+連線.txt               # 你有 連線.txt，可能是測試連線資訊，忽略
+send-content.txt       # 同上，可能是草稿或測試內容
+copy.php               # 看起來是複製檔或備份
+*.copy.php
+
+# Git 本身
+.git/
+.gitignore             # 通常不需要忽略自己，但有時加這行防呆
+.gitattributes
+
+# 測試或臨時頁面
+test.php
+debug.php
+info.php
+phpinfo.php
